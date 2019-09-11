@@ -1,0 +1,7 @@
+SET(src_list add2.cpp)
+ADD_LIBRARY(add2 SHARED ${src_list})
+ADD_LIBRARY(add2_static STATIC ${src_list})
+SET_TARGET_PROPERTIES(add2_static PROPERTIES OUTPUT_NAME "add2")
+
+GET_TARGET_PROPERTY(OUTPUT_VALUE add2_static OUTPUT_NAME) 
+MESSAGE(STATUS "add2_static OUTPUT_NAME: " ${OUTPUT_VALUE} "\n")
