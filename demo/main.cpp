@@ -9,5 +9,8 @@ int main (int argc , char* argv[]){
 
     int d = add(a,b,c);
     printf("%d + %d = %d\n", a, b, d);
+#ifdef DEBUG
+    printf ("main demo DEBUG is on!!!!\n");
+#endif
     return 0;
 }

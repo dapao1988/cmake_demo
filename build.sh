@@ -11,6 +11,6 @@ export CMAKE_LIBRARY_PATH=/home/cannon/rokid/document/performance/cmake/library-
 rm -rf build
 mkdir -p build
 cd build
-cmake .. -DCMAKE_INSTALL_PREFIX=. 
+cmake .. -DCMAKE_INSTALL_PREFIX=. -DCMAKE_VERBOSE_MAKEFILE=ON
 make -j8
 make install
