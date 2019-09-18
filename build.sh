@@ -7,10 +7,12 @@
 
 export CMAKE_INCLUDE_PATH=/home/cannon/rokid/document/performance/cmake/library-A-B-C/add2;/home/cannon/rokid/document/performance/cmake/library-A-B-C/add1;/home/cannon/rokid/document/performance/cmake/library-A-B-C/add
 export CMAKE_LIBRARY_PATH=/home/cannon/rokid/document/performance/cmake/library-A-B-C/build
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/cannon/rokid/document/performance/cmake/library-A-B-C/build/add1:/home/cannon/rokid/document/performance/cmake/library-A-B-C/build/add:/home/cannon/rokid/document/performance/cmake/library-A-B-C/build/add2
 
 rm -rf build
 mkdir -p build
 cd build
-cmake .. -DCMAKE_INSTALL_PREFIX=. -DCMAKE_VERBOSE_MAKEFILE=ON
-make -j8
+cmake .. -DCMAKE_INSTALL_PREFIX=. -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_BUILD_TYPE=Release
+make -j8 && make test
 make install
+
