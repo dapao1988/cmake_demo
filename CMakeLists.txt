@@ -54,11 +54,23 @@ INSTALL(DIRECTORY doc DESTINATION share
 INSTALL(FILES README COPYRIGHT DESTINATION ${CMAKE_INSTALL_PREFIX})
     #    RENAME  readme COPYRIGHT)
 
+##################################define macro for ctest#########################################
+macro(do_test ARG1 ARG2 RESULT)
+    ADD_TEST(NAME test_add_${ARG1}_${ARG2} COMMAND ${PROJECT_BINARY_DIR}/demo/main ${ARG1} ${ARG2})
+    SET_TESTS_PROPERTIES(test_add_${ARG1}_${ARG2}
+        PROPERTIES PASS_REGULAR_EXPRESSION ${RESULT})
+endmacro(do_test)
+##################################define macro for ctest#########################################
+
 #ENABLE_TESTING()
 add_test(test_example_no_args ${PROJECT_BINARY_DIR}/demo/main)
 SET_TESTS_PROPERTIES(test_example_no_args
     PROPERTIES PASS_REGULAR_EXPRESSION "3")
-add_test(test_example_2_add_3 ${PROJECT_BINARY_DIR}/demo/main 2 3)
-SET_TESTS_PROPERTIES(test_example_2_add_3
-    PROPERTIES PASS_REGULAR_EXPRESSION "5")
+
+do_test(5 6 11)
+do_test(6 6 12)
+do_test(16 16 32)
+do_test(26 26 52)
+do_test(36 36 72)
+do_test(46 46 92)
 enable_testing()
