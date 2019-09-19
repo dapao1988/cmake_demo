@@ -74,3 +74,16 @@ do_test(26 26 52)
 do_test(36 36 72)
 do_test(46 46 92)
 enable_testing()
+
+
+
+
+################################test exec_program################################################
+MESSAGE(STATUS "start to execute command!!!!!!!!!!!!!")
+MESSAGE(STATUS "current folder path: ${CMAKE_CURRENT_SOURCE_DIR}")
+EXECUTE_PROCESS(COMMAND pwd
+    COMMAND ls
+    OUTPUT_VARIABLE log_output
+    ERROR_VARIABLE error_output)
+MESSAGE(STATUS "filenames: ${log_output}")
+################################test exec_program################################################
