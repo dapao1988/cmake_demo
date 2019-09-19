@@ -79,11 +79,14 @@ enable_testing()
 
 
 ################################test exec_program################################################
+# ./shell.sh | sed 's/^\s[0-9]*/hello /g' | sed 's/[0-9]*$/world!/g' #
 MESSAGE(STATUS "start to execute command!!!!!!!!!!!!!")
 MESSAGE(STATUS "current folder path: ${CMAKE_CURRENT_SOURCE_DIR}")
-EXECUTE_PROCESS(COMMAND pwd
-    COMMAND ls
+EXECUTE_PROCESS(COMMAND sh ../shell.sh
+    #COMMAND sed 's/^ [0-9]*/hello /g'
+    #COMMAND sed 's/[0-9]*$/world!/g'
     OUTPUT_VARIABLE log_output
     ERROR_VARIABLE error_output)
-MESSAGE(STATUS "filenames: ${log_output}")
+MESSAGE(STATUS "content: ${log_output}")
+MESSAGE(STATUS "error_output: ${error_output}")
 ################################test exec_program################################################
