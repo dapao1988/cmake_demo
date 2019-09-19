@@ -33,6 +33,16 @@ MESSAGE(STATUS" cmake_current_source_dir:${CMAKE_CURRENT_SOURCE_DIR}")
 MESSAGE(STATUS" cmake_module_path:"${CMAKE_MODULE_PATH})
 MESSAGE(STATUS" cmake_module_path: ${CMAKE_MODULE_PATH}")
 MESSAGE(STATUS" JAVA_HOME:$ENV{JAVA_HOME}")
+
+MESSAGE(STATUS "Arch platform:")
+SET(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS ON)
+IF(WIN32)
+    MESSAGE(STATUS "WIN32")
+ELSEIF(UNIX)
+    MESSAGE(STATUS "UNIX")
+ELSEIF(APPLE)
+    MESSAGE(STATUS "APPLE")
+ENDIF(WIN32)
 #SET(ENV{变量名} 值)
 #SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/test/bin)
 #SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/test/lib)
@@ -40,6 +50,7 @@ ADD_SUBDIRECTORY(add2 add2)
 ADD_SUBDIRECTORY(add1 add1)
 ADD_SUBDIRECTORY(add add)
 ADD_SUBDIRECTORY(demo demo)
+ADD_SUBDIRECTORY(curl-example curl-example)
 
 #INSTALL(TARGETS add2 add1
 #    RUNTIME DESTINATION bin
@@ -89,4 +100,8 @@ EXECUTE_PROCESS(COMMAND sh ../shell.sh
     ERROR_VARIABLE error_output)
 MESSAGE(STATUS "content: ${log_output}")
 MESSAGE(STATUS "error_output: ${error_output}")
+
+FOREACH(ITEM ${log_output})
+    MESSAGE(STATUS "item: ${ITEM}")
+ENDFOREACH(ITEM)
 ################################test exec_program################################################
