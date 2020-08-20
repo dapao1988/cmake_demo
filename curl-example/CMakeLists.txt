@@ -14,16 +14,28 @@ MESSAGE (STATUS "CMAKE_C_FLAGS:  ${CMAKE_C_FLAGS}")
 MESSAGE (STATUS "CMAKE_CXX_FLAGS:  ${CMAKE_CXX_FLAGS}")
 SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g3")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g3")
-IF(${CMAKE_BUILD_TYPE} STREQUAL "Release")
+IF(CMAKE_BUILD_TYPE STREQUAL "Release")
     MESSAGE (STATUS "CMAKE_BUILD_TYPE is Release, to strip file")
     set(CMAKE_EXE_LINKER_FLAGS_RELEASE "-s")
 ENDIF()
 MESSAGE (STATUS "CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
 OPTION(CMAKE_BUILD_TYPE "This is a option for release" "Release")
 MESSAGE (STATUS "CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
-INCLUDE_DIRECTORIES(/usr/include)
+
+
+#######################################start to find library####################################
+####################################### one way ################################################
+#INCLUDE_DIRECTORIES(/usr/include)
 ADD_EXECUTABLE(${PROJECT_NAME} ${src_list})
-TARGET_LINK_LIBRARIES(${PROJECT_NAME} curl)
+#TARGET_LINK_LIBRARIES(${PROJECT_NAME} curl)
+####################################### the other way ##########################################
+FIND_PACKAGE(CURL)
+IF(CURL_FOUND)
+    INCLUDE_DIRECTORIES(${CURL_INCLUDE_DIR})
+    TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${CURL_LIBRARY})
+ELSE(CURL_FOUND)
+    MESSAGE(FATAL_ERROR ”CURL library not found”)
+ENDIF(CURL_FOUND)
 
 INSTALL(TARGETS ${PROJECT_NAME} DESTINATION bin)
 

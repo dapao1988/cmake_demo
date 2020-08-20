@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.14)
 
+#SET (CMAKE_C_COMPILER             "/usr/local/bin/clang")
+#SET (CMAKE_CXX_COMPILER           "/usr/local/bin/clang++")
+
 #SET (SRC_LIST helloworld.c)
 MESSAGE (STATUS "cmake major version:  ${CMAKE_MAJOR_VERSION}")
 MESSAGE (STATUS "cmake minor version:  ${CMAKE_MINOR_VERSION}")
@@ -93,7 +96,7 @@ enable_testing()
 # ./shell.sh | sed 's/^\s[0-9]*/hello /g' | sed 's/[0-9]*$/world!/g' #
 MESSAGE(STATUS "start to execute command!!!!!!!!!!!!!")
 MESSAGE(STATUS "current folder path: ${CMAKE_CURRENT_SOURCE_DIR}")
-EXECUTE_PROCESS(COMMAND sh ../shell.sh
+EXECUTE_PROCESS(COMMAND sh /home/cannon/sda7/rokid/document/performance/cmake/library-A-B-C/shell.sh
     #COMMAND sed 's/^ [0-9]*/hello /g'
     #COMMAND sed 's/[0-9]*$/world!/g'
     OUTPUT_VARIABLE log_output

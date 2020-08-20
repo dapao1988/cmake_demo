@@ -12,7 +12,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/cannon/rokid/document/performance/
 rm -rf build
 mkdir -p build
 cd build
-cmake .. -DCMAKE_INSTALL_PREFIX=. -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_BUILD_TYPE=Release
+cmake .. -DCMAKE_INSTALL_PREFIX=. -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=YES
 make -j8 && make test
 make install
 

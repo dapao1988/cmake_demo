@@ -3,7 +3,7 @@ MESSAGE(STATUS "project_name: " ${PROJECT_NAME})
 
 SET(src_list add1.cpp)
 ADD_LIBRARY(${PROJECT_NAME} SHARED ${src_list})
-#INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/../add2)
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/../add2)
 FIND_PATH(add2_header_path add2.h)
 MESSAGE(STATUS ${add2_header_path})
 IF(add2_header_path)
